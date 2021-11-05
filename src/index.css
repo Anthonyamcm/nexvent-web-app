@@ -1,13 +1,26 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'GTE-Regular';
+  src: local('GTE-Regular'), url(./fonts/GTEestiDisplay-Regular.ttf) format('truetype');
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+    font-family: 'GTE-Medium';
+    src: local('GTE-Medium'), url(./fonts/GTEestiDisplay-Medium.ttf) format('truetype');
 }
+
+body {
+font-family: 'GTE-Medium';
+}
+
+a:hover{
+  color: #463853 !important;
+}
+
+input{
+  font-family: 'GTE-Medium';
+}
+
+button{
+  font-family: 'GTE-Medium';
+}
+
