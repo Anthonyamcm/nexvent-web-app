@@ -23,9 +23,24 @@ class SignUp extends Component {
                         </nav>
                     <form action="#">
                         <h1 className="pb-5 is-size-2">Create Account</h1>
-                                <input className="input" type="text" placeholder="Name" />
-                                <input className="input" type="email" placeholder="Email" />
-                                <input className="input" type="password" placeholder="Password" />
+                        <div class="field pt-5">
+                                <label class="label">Company</label>
+                                    <div class="control">
+                                        <input class="input" type="text" placeholder="Nexure"/>
+                                    </div>
+                            </div>
+                            <div class="field pt-5">
+                                <label class="label">Email</label>
+                                    <div class="control">
+                                        <input class="input" type="email" placeholder="someone@company.com"/>
+                                    </div>
+                            </div>
+                            <div class="field pt-5">
+                                <label class="label">Password</label>
+                                    <div class="control">
+                                        <input class="input" type="password" placeholder="Password"/>
+                                    </div>
+                            </div>
                             <button className="button mt-5" >Sign Up</button>
                     </form>
                 </div>

@@ -22,12 +22,12 @@ class SignIn extends Component {
                             </div>
                             </div>
                         </nav>
-                    <form action="#">
+                    <form action="#">        
                         <h1 className="py-5 is-size-2" >Sign in</h1>
                             <div class="field pt-5">
                                 <label class="label">Email</label>
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="someone@email.com"/>
+                                        <input class="input" type="email" placeholder="someone@email.com"/>
                                     </div>
                             </div>
                             <div class="field pt-5">
