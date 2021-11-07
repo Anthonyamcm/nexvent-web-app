@@ -16,7 +16,7 @@ a {
 
 
 .ghost {
-    border-radius: 20px;
+    border-radius: 12px;
     background-color: transparent;
     border: solid white;
     color: #ffffff;
@@ -43,14 +43,6 @@ form {
     padding: 2.5rem 7.5rem;
     height: 100%;
 
-}
-
-input {
-    background-color: #eee;
-    border: none;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
 }
 
 .page-container {
@@ -174,5 +166,3 @@ input {
 .page-container.right-panel-active .overlay-right {
     transform: translateX(20%);
 }
-
-

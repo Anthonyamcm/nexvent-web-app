@@ -22,7 +22,7 @@ class SignIn extends Component {
                             </div>
                             </div>
                         </nav>
-                    <form action="#">        
+                    <form className="signin-form" action="#">        
                         <h1 className="py-5 is-size-2" >Sign in</h1>
                             <div class="field pt-5">
                                 <label class="label">Email</label>
@@ -36,7 +36,7 @@ class SignIn extends Component {
                                         <input class="input" type="email" placeholder="Password"/>
                                     </div>
                             </div>
-                                <a href="#" className="pt-5">Forgot your password?</a>
+                                <a href="/" className="pt-5">Forgot your password?</a>
                             <button className="button mt-5" >Sign In</button>
                     </form>
                 </div>

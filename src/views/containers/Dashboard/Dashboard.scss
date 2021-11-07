@@ -1,0 +1,37 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    overflow: hidden;
+    background-color: whitesmoke;
+
+    .box:not(:last-child){
+        margin-bottom: 0;
+    }
+  
+    .infinite-scroll__end-message {
+      text-align: center;
+      padding: 20px 0;
+    }
+  
+    .has-more__loading {
+      padding: 30px 0;
+      margin: 0 auto;
+    }
+
+    .dashboard-main{
+        min-height: 100%;
+
+    }
+
+    .columns{
+      .column{
+        padding-right: 0 !important;
+      }
+    }
+}
+  

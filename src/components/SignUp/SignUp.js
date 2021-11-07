@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import logo from '../../assets/nexvent-logo.png'
+import './SignUp.scss'
 
 class SignUp extends Component {
     render(){
@@ -21,7 +22,7 @@ class SignUp extends Component {
                             </div>
                             </div>
                         </nav>
-                    <form action="#">
+                    <form className="signup-form" action="#">
                         <h1 className="pb-5 is-size-2">Create Account</h1>
                         <div class="field pt-5">
                                 <label class="label">Company</label>
