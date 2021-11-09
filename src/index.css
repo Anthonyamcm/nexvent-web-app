@@ -51,3 +51,12 @@ progress[value]::-webkit-progress-value {
   border-radius: 9999px;
 }
 
+.table th{
+  border: none !important;
+}
+
+.table td{
+  border: none !important;
+}
+
+

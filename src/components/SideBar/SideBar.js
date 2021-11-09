@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import logo from '../../assets/nexvent-logo.png'
-import {FaRegUser , FaRegCreditCard} from 'react-icons/fa'
+import {FaRegUser , FaRegCreditCard, FaRegBell} from 'react-icons/fa'
 import {FiSliders} from 'react-icons/fi'
 import {MdOutlineSpaceDashboard} from 'react-icons/md'
 import './SideBar.scss'
@@ -55,6 +55,16 @@ class SideBar extends Component {
                                     <FaRegCreditCard/>
                                 </span>
                                 <span className="pl-1">Billing</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div className="column is-full navigation py-0">
+                        <a href="/Dashboard" className="is-size-6 pl-5">
+                            <span className="icon-text">
+                                <span className="icon">
+                                    <FaRegBell/>
+                                </span>
+                                <span className="pl-1">Notifications</span>
                             </span>
                         </a>
                     </div>

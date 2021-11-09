@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import SideBar from "../../../components/SideBar/SideBar";
-import {FaRegBell} from 'react-icons/fa'
 import DashboardGraph from "../../../components/Dashboard/DashboardGraph/DashboardGraph";
 import DashboardTagsList from "../../../components/Dashboard/DashboardTagsList/DashboardTagsList";
 import DashboardList from "../../../components/Dashboard/DashboardTable/DashboardTable";
@@ -12,23 +11,18 @@ class Dashboard extends Component {
             <div className="dashboard">
                 <SideBar/>
                 <div className="dashboard-main column is-three-fifth is-fullheight">
-                    <div className="columns">
-                        <div className="column pr-5 pt-5 is-11">
-                            <div className="tile is-ancestor">
+                            <div className="tile is-ancestor" style={{flex:0}}>
                                 <div className="tile is-parent">
-                                    <article className="tile is-child">
-                                        <p className="title">Dashboard</p>
-                                        <p className="subtitle">Nexure</p>
+                                    <article className="tile is-child box">
+                                        <div className="is-flex">
+                                            <div style={{flex: 1}}>
+                                                <p className="title is-size-4">Dashboard</p>
+                                                <p className="subtitle is-size-5">Nexure</p>
+                                            </div>
+                                        </div>
                                     </article>
                                 </div>
                             </div>
-                        </div>
-                        <div className="column pt-5 pb-5 is-1">
-                            <a href='/'>
-                            <FaRegBell size={32}/>
-                            </a>
-                        </div>
-                    </div>
                     <div class="tile is-ancestor">
                         <div className="tile is-parent is-8">
                             <DashboardGraph/>
