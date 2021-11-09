@@ -9,6 +9,7 @@ class DashboardTagsList extends Component {
                 <div className="is-flex pb-5">
                     <div style={{flex: 1}}>
                         <p className="title is-size-4">Tags</p>
+                        <p className="subtitle is-size-6">Popularity</p>
                     </div>
                     <div className="select">
                         <select>

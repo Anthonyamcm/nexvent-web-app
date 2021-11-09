@@ -58,7 +58,7 @@ class DashboardGraph extends Component{
                                 </linearGradient>
                             </defs>
                                 <XAxis dataKey="name" interval="preserveStartEnd" axisLine={false} tickLine={false} />
-                                <Tooltip contentStyle={{borderRadius: 12}} cursor={{ strokeWidth: 2 }}/>
+                                <Tooltip contentStyle={{borderRadius: 12}} cursor={{ strokeWidth: 4}}/>
                                 <Area type="monotone" dataKey="posts" stroke="#0072FF" strokeWidth={4} isAnimationActive={false} fillOpacity={1} fill="url(#colorUv)"/>
                          </AreaChart>
                          </ResponsiveContainer>

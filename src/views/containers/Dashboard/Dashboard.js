@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import SideBar from "../../../components/SideBar/SideBar";
-import{FaRegBell} from 'react-icons/fa'
+import {FaRegBell} from 'react-icons/fa'
 import DashboardGraph from "../../../components/Dashboard/DashboardGraph/DashboardGraph";
 import DashboardTagsList from "../../../components/Dashboard/DashboardTagsList/DashboardTagsList";
+import DashboardList from "../../../components/Dashboard/DashboardTable/DashboardTable";
 import './Dashboard.scss'
-
 
 class Dashboard extends Component {
     render(){
@@ -13,7 +13,7 @@ class Dashboard extends Component {
                 <SideBar/>
                 <div className="dashboard-main column is-three-fifth is-fullheight">
                     <div className="columns">
-                        <div className="column pr-5 pt-5 pb-5 is-11">
+                        <div className="column pr-5 pt-5 is-11">
                             <div className="tile is-ancestor">
                                 <div className="tile is-parent">
                                     <article className="tile is-child">
@@ -37,8 +37,10 @@ class Dashboard extends Component {
                             <DashboardTagsList/>                           
                         </div>
                     </div>
-                    <div className="tile box">
-
+                    <div className="tile is-ancestor" style={{overflow: 'hidden'}}>
+                        <div className="tile is-parent">
+                            <DashboardList/>
+                        </div>
                     </div>
                 </div>
             </div>
