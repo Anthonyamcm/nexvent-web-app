@@ -2,7 +2,9 @@ import React, {Component} from "react";
 import SideBar from "../../../components/SideBar/SideBar";
 import{FaRegBell} from 'react-icons/fa'
 import DashboardGraph from "../../../components/Dashboard/DashboardGraph/DashboardGraph";
+import DashboardTagsList from "../../../components/Dashboard/DashboardTagsList/DashboardTagsList";
 import './Dashboard.scss'
+
 
 class Dashboard extends Component {
     render(){
@@ -27,10 +29,16 @@ class Dashboard extends Component {
                             </a>
                         </div>
                     </div>
-                    <div className="tile is-vertical is-8">
-                        <DashboardGraph/>
+                    <div class="tile is-ancestor">
+                        <div className="tile is-parent is-8">
+                            <DashboardGraph/>
+                        </div>
+                        <div className="tile is-parent is-4">
+                            <DashboardTagsList/>                           
+                        </div>
                     </div>
-                    <div className="tile is-vertical is-4">
+                    <div className="tile box">
+
                     </div>
                 </div>
             </div>

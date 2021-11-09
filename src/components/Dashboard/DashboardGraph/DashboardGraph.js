@@ -32,23 +32,18 @@ const data = [
   },
 ];
 
-const tooltipStyle = {
-  borderRadius: '12px',
-  border: 'none',
-}
+
 
 class DashboardGraph extends Component{
     render(){
         return(
-            <div className="tile">
-                <div className="tile is-parent">
-                    <article className="tile is-child box">
+                    <article className="tile is-child box" style={{paddingBottom: 0}}>
                       <div className="is-flex">
                         <div style={{flex: 1}}>
                             <p className="title is-size-4">Your Activity</p>
                             <p className="subtitle is-size-6">8 Nov 2020 - 14 Nov 2020</p>
                         </div>
-                        <div class="select">
+                        <div className="select">
                             <select>
                                 <option>Last Week</option>
                             </select>
@@ -63,15 +58,13 @@ class DashboardGraph extends Component{
                                 </linearGradient>
                             </defs>
                                 <XAxis dataKey="name" interval="preserveStartEnd" axisLine={false} tickLine={false} />
-                                <Tooltip contentStyle={tooltipStyle} cursor={{ strokeWidth: 2 }}/>
+                                <Tooltip contentStyle={{borderRadius: 12}} cursor={{ strokeWidth: 2 }}/>
                                 <Area type="monotone" dataKey="posts" stroke="#0072FF" strokeWidth={4} isAnimationActive={false} fillOpacity={1} fill="url(#colorUv)"/>
                          </AreaChart>
                          </ResponsiveContainer>
                     </article>
-                </div>
-            </div>
-        )
-    }
+            )
+        }
 }
 
 export default DashboardGraph;

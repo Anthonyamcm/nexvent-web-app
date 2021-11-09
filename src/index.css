@@ -35,3 +35,19 @@ select{
   border-color: gray !important;
 }
 
+.progress::-webkit-progress-value {
+  background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%) !important;
+}
+.progress::-moz-progress-bar {
+  background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%) !important;
+}
+
+.progress::-ms-fill {
+  background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%) !important;
+  border: none;
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: 9999px;
+}
+
