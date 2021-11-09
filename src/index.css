@@ -24,3 +24,14 @@ button{
   font-family: 'GTE-Medium';
 }
 
+select{
+  font-family: 'GTE-Medium';
+  border: none !important;
+  color: gray !important;
+  background-color: whitesmoke !important;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: gray !important;
+}
+

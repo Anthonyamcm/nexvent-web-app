@@ -13,12 +13,12 @@ class SideBar extends Component {
                     <div className="container">
                         <div className="navbar-brand">
                             <a className="navbar-item" href="https://bulma.io">
-                                <a class="brand" href="/"> 
-                                    <div class="brand-icon"> 
+                                <a className="brand" href="/"> 
+                                    <div className="brand-icon"> 
                                         <img alt="Nexvent logo" role="presentation" src={logo}/> 
                                     </div> 
-                                    <div class="brand-content"> 
-                                        <div class="brand-title"> Nexvent</div>
+                                    <div className="brand-content"> 
+                                        <div className="brand-title"> Nexvent</div>
                                     </div> 
                                 </a>
                             </a>

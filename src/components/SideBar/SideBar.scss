@@ -1,6 +1,4 @@
 .hero{
-
-    
     .upper{
         flex: 1;
 
@@ -37,6 +35,9 @@
     }
  
     .column{
+
+        padding-right: 0 !important;
+
 
         a:hover{
             background-color: #FBFBFD;
