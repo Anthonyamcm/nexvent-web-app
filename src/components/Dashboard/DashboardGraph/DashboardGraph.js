@@ -37,8 +37,8 @@ const data = [
 class DashboardGraph extends Component{
     render(){
         return(
-                    <article className="tile is-child box" style={{paddingBottom: 0}}>
-                      <div className="is-flex">
+                    <article className="tile is-child box" >
+                      <div className="is-flex pb-5">
                         <div style={{flex: 1}}>
                             <p className="title is-size-4">Your Activity</p>
                             <p className="subtitle is-size-6">8 Nov 2020 - 14 Nov 2020</p>
@@ -49,7 +49,8 @@ class DashboardGraph extends Component{
                             </select>
                         </div>
                         </div>
-                        <ResponsiveContainer width={'99%'} aspect={3}>           
+                        <div style={{backgroundColor: 'whitesmoke', borderRadius: 12, padding: 5}}>
+                        <ResponsiveContainer width={'99%'} aspect={2.5}>           
                           <AreaChart data={data}>
                             <defs>
                                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -58,10 +59,11 @@ class DashboardGraph extends Component{
                                 </linearGradient>
                             </defs>
                                 <XAxis dataKey="name" interval="preserveStartEnd" axisLine={false} tickLine={false} />
-                                <Tooltip contentStyle={{borderRadius: 12}} cursor={{ strokeWidth: 4}}/>
+                                <Tooltip contentStyle={{borderRadius: 12}} cursor={{ strokeWidth: 2}}/>
                                 <Area type="monotone" dataKey="posts" stroke="#0072FF" strokeWidth={4} isAnimationActive={false} fillOpacity={1} fill="url(#colorUv)"/>
                          </AreaChart>
                          </ResponsiveContainer>
+                         </div>
                     </article>
             )
         }

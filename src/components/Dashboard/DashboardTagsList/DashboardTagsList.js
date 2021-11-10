@@ -18,9 +18,31 @@ class DashboardTagsList extends Component {
                         </select>
                     </div>
                 </div>
-                <div style={{overflowY: 'scroll', overflowX: 'hidden', height: "200px"}}>
+                <div style={{overflowY: 'scroll', overflowX: 'hidden', height: "80%", backgroundColor: "Whitesmoke", borderRadius: 12, padding: 20 }}>
                     <div className="columns">
                         <div className="column is-full">
+                            <div className="columns">
+                                <div className="column is-2">
+                                    <p>Tags</p>
+                                </div>
+                                <div className="column is-7">
+                                    <progress class="progress"value="69" max="100">69%</progress>
+                                </div>
+                                <div className="column is-3">
+                                    <p>69%</p>
+                                </div>
+                            </div>
+                            <div className="columns">
+                                <div className="column is-2">
+                                    <p>Tags</p>
+                                </div>
+                                <div className="column is-7">
+                                    <progress class="progress" value="60" max="100">60%</progress>
+                                </div>
+                                <div className="column is-2">
+                                    <p>60%</p>
+                                </div>
+                            </div>
                             <div className="columns">
                                 <div className="column is-2">
                                     <p>Tags</p>
@@ -29,7 +51,7 @@ class DashboardTagsList extends Component {
                                     <progress class="progress"value="55" max="100">55%</progress>
                                 </div>
                                 <div className="column is-2">
-                                    <p>99.9%</p>
+                                    <p>55%</p>
                                 </div>
                             </div>
                             <div className="columns">
@@ -37,10 +59,10 @@ class DashboardTagsList extends Component {
                                     <p>Tags</p>
                                 </div>
                                 <div className="column is-7">
-                                    <progress class="progress" value="35" max="100">35%</progress>
+                                    <progress class="progress"value="43" max="100">43%</progress>
                                 </div>
                                 <div className="column is-2">
-                                    <p>99%</p>
+                                    <p>43%</p>
                                 </div>
                             </div>
                             <div className="columns">
@@ -48,10 +70,10 @@ class DashboardTagsList extends Component {
                                     <p>Tags</p>
                                 </div>
                                 <div className="column is-7">
-                                    <progress class="progress"value="80" max="100">55%</progress>
+                                    <progress class="progress"value="30" max="100">30%</progress>
                                 </div>
                                 <div className="column is-2">
-                                    <p>99%</p>
+                                    <p>30%</p>
                                 </div>
                             </div>
                             <div className="columns">
@@ -59,32 +81,10 @@ class DashboardTagsList extends Component {
                                     <p>Tags</p>
                                 </div>
                                 <div className="column is-7">
-                                    <progress class="progress"value="35" max="100">55%</progress>
+                                    <progress class="progress"value="19" max="100">19%</progress>
                                 </div>
                                 <div className="column is-2">
-                                    <p>99%</p>
-                                </div>
-                            </div>
-                            <div className="columns">
-                                <div className="column is-2">
-                                    <p>Tags</p>
-                                </div>
-                                <div className="column is-7">
-                                    <progress class="progress"value="49" max="100">55%</progress>
-                                </div>
-                                <div className="column is-2">
-                                    <p>99%</p>
-                                </div>
-                            </div>
-                            <div className="columns">
-                                <div className="column is-2">
-                                    <p>Tags</p>
-                                </div>
-                                <div className="column is-7">
-                                    <progress class="progress"value="73" max="100">55%</progress>
-                                </div>
-                                <div className="column is-2">
-                                    <p>99%</p>
+                                    <p>19%</p>
                                 </div>
                             </div>
                         </div>

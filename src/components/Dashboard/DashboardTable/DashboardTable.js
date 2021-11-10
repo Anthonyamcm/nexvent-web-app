@@ -17,35 +17,42 @@ class DashboardList extends Component{
                     </div>
                 </div>
                 <div style={{overflowY: 'scroll', overflowX: 'hidden', height: '75%'}}>
-                    <table class="table is-fullwidth is-hoverable">
+                    <table class="table is-fullwidth is-hoverable is-striped">
                         
                         <tbody>
                             <tr>
                                 <th>Placeholder</th>
                                 <td>Manic Monday</td>
                                 <td>90 Glassford St, Glasgow G1 1UR</td>
-                                <td><span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span></td>
+                                <td><span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span></td>
                                 <td><span class="tag is-primary is-light">Ongoing</span></td>
                             </tr>
                             <tr>
                                 <th>Placeholder</th>
                                 <td>Manic Monday</td>
                                 <td>90 Glassford St, Glasgow G1 1UR</td>
-                                <td><span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span></td>
+                                <td><span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span></td>
+                                <td><span class="tag is-primary is-light">Ongoing</span></td>
+                            </tr>
+                            <tr>
+                                <th>Placeholder</th>
+                                <td>Manic Monday</td>
+                                <td>90 Glassford St, Glasgow G1 1UR</td>
+                                <td><span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span></td>
+                                <td><span class="tag is-primary is-light">Ongoing</span></td>
+                            </tr>
+                            <tr>
+                                <th>Placeholder</th>
+                                <td>Manic Monday</td>
+                                <td>90 Glassford St, Glasgow G1 1UR</td>
+                                <td><span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span></td>
                                 <td><span class="tag is-danger is-light">Finished</span></td>
                             </tr>
                             <tr>
                                 <th>Placeholder</th>
                                 <td>Manic Monday</td>
                                 <td>90 Glassford St, Glasgow G1 1UR</td>
-                                <td><span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span></td>
-                                <td><span class="tag is-danger is-light">Finished</span></td>
-                            </tr>
-                            <tr>
-                                <th>Placeholder</th>
-                                <td>Manic Monday</td>
-                                <td>90 Glassford St, Glasgow G1 1UR</td>
-                                <td><span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span> <span class="tag">Tag</span></td>
+                                <td><span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span> <span class="tag is-dark">Tag</span></td>
                                 <td><span class="tag is-danger is-light">Finished</span></td>
                             </tr>
                         </tbody>

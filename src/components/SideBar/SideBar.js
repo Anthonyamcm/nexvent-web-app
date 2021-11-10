@@ -29,7 +29,7 @@ class SideBar extends Component {
                 <a href="/" className="button mt-6">Create event</a>
                 <div className="columns is-multiline mt-6 pb-0">
                     <div className="column is-full navigation">
-                        <a href="/Dashboard" className="is-size-6 pl-5 is-active">
+                        <a href="/Dashboard" className="is-size-6 pl-5">
                             <span className="icon-text">
                                 <span className="icon">
                                     <MdOutlineSpaceDashboard/>
@@ -39,7 +39,7 @@ class SideBar extends Component {
                         </a>
                     </div>
                     <div className="column is-full navigation py-0">
-                        <a href="/Dashboard" className="is-size-6 pl-5">
+                        <a href="/Account" className="is-size-6 pl-5 is-active">
                             <span className="icon-text">
                                 <span className="icon">
                                     <FaRegUser/>
