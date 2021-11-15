@@ -33,6 +33,7 @@ const storeLastUrl = () => {
     const lastUrl = window.location.pathname;
     localStorage.setItem('lastUrl', JSON.stringify(lastUrl));
   };
+
 const getLastUrl = () => {
     if (localStorage.lastUrl) {
       return JSON.parse(localStorage.getItem('lastUrl'));

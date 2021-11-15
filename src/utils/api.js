@@ -114,7 +114,11 @@ const attachSessionId = () => {
 const AUTHENTICATION = () => ({
   login: (objectData) => {
     attachSessionId();
-    return instance.post('/users/authenticate', objectData);
+    return instance.post('/business/authenticate', objectData);
+  },
+  register: (objectData) => {
+    attachSessionId();
+    return instance.post('/business/register', objectData);
   },
   logout: (objectData) => {
     attachAuthToken();

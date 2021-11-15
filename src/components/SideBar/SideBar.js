@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import logo from '../../assets/nexvent-logo.png'
-import {FaRegUser , FaRegCreditCard, FaRegBell} from 'react-icons/fa'
+import {FaRegUser} from 'react-icons/fa'
 import {FiSliders} from 'react-icons/fi'
 import {MdOutlineSpaceDashboard} from 'react-icons/md'
 import './SideBar.scss'
@@ -26,10 +26,10 @@ class SideBar extends Component {
                     </div>
                 </nav>
                 <div className="upper">
-                <a href="/" className="button mt-6">Create event</a>
+                <a href="/Event" className="button mt-6">Create event</a>
                 <div className="columns is-multiline mt-6 pb-0">
                     <div className="column is-full navigation">
-                        <a href="/Dashboard" className="is-size-6 pl-5">
+                        <a href="/Dashboard" className="is-size-6 pl-5 is-active">
                             <span className="icon-text">
                                 <span className="icon">
                                     <MdOutlineSpaceDashboard/>
@@ -38,7 +38,7 @@ class SideBar extends Component {
                             </span>
                         </a>
                     </div>
-                    <div className="column is-full navigation py-0">
+                    <div className="column is-full navigation ">
                         <a href="/Account" className="is-size-6 pl-5 is-active">
                             <span className="icon-text">
                                 <span className="icon">
@@ -48,28 +48,8 @@ class SideBar extends Component {
                             </span>
                         </a>
                     </div>
-                    <div className="column is-full navigation py-0">
-                        <a href="/Dashboard" className="is-size-6 pl-5">
-                            <span className="icon-text">
-                                <span className="icon">
-                                    <FaRegCreditCard/>
-                                </span>
-                                <span className="pl-1">Billing</span>
-                            </span>
-                        </a>
-                    </div>
-                    <div className="column is-full navigation py-0">
-                        <a href="/Dashboard" className="is-size-6 pl-5">
-                            <span className="icon-text">
-                                <span className="icon">
-                                    <FaRegBell/>
-                                </span>
-                                <span className="pl-1">Notifications</span>
-                            </span>
-                        </a>
-                    </div>
-                    <div className="column is-full navigation py-0">
-                        <a href="/Dashboard" className="is-size-6 pl-5">
+                    <div className="column is-full navigation">
+                        <a href="/Dashboard" className="is-size-6 pl-5 is-active">
                             <span className="icon-text">
                                 <span className="icon">
                                     <FiSliders/>

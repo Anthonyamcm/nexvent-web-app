@@ -15,8 +15,8 @@ class Account extends Component {
                             <article className="tile is-child box">
                                 <div className="form">
                                     <div className="image-container">
-                                        <figure class="image is-128x128 mr-5">
-                                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png"/>
+                                        <figure className="image is-128x128 mr-5">
+                                            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Company logo"/>
                                         </figure>
                                         <div className="pt-6">
                                         <p className="title">Nexure</p>

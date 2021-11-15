@@ -17,6 +17,7 @@ import {
   const isAuthorized = () => (dispatch) => {
     // dispatch({ type: CHECK_USER_LOGGED_IN_PENDING });
     const user = localStorage.getItem('session') ? JSON.parse(localStorage.getItem('session')) : null;
+    console.log(user)
     if (user) {
       dispatch({ type: CHECK_USER_LOGGED_IN_SUCCESS, payload: user });
       return true;
@@ -29,18 +30,43 @@ import {
     try {
       dispatch({ type: AUTH_USER_PENDING });
       const res = await API.AUTHENTICATION().login(credentials);
-      if (res.status === constant.RES_STATUS.SUCCESS) {
+      console.log(res)
+      if (res.status.code === 200) {
         console.log('callback', callback);
   
         if (callback) {
           console.log('callback', callback);
           callback(res);
         }
-        dispatch({ type: AUTH_USER_SUCCESS, payload: res.result });
+        dispatch({ type: AUTH_USER_SUCCESS, payload: res.body });
         return true;
       }
       throw Error(res.message);
     } catch (error) {
+      console.log(error)
+      dispatch({ type: AUTH_USER_ERROR, payload: error.message });
+      return false;
+    }
+  };
+
+  const registerUser = (credentials, callback) => async (dispatch) => {
+    try {
+      dispatch({ type: AUTH_USER_PENDING });
+      const res = await API.AUTHENTICATION().register(credentials);
+      console.log(res)
+      if (res.status.code === 200) {
+        console.log('callback', callback);
+  
+        if (callback) {
+          console.log('callback', callback);
+          callback(res);
+        }
+        dispatch({ type: AUTH_USER_SUCCESS, payload: res.body });
+        return true;
+      }
+      throw Error(res.message);
+    } catch (error) {
+      console.log(error)
       dispatch({ type: AUTH_USER_ERROR, payload: error.message });
       return false;
     }
@@ -63,4 +89,4 @@ import {
     }
   };
   
-  export { isAuthorized, authenticateUser, userLogout, updateMe };
+  export { isAuthorized, authenticateUser, registerUser, userLogout, updateMe };

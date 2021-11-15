@@ -1,5 +1,11 @@
 .signin-form{
 
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 7.5rem;
+    height: 100%;
+
     .button{
         background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%);
         border: none !important;

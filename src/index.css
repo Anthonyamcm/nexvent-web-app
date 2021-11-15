@@ -9,7 +9,7 @@
 }
 
 body {
-font-family: 'GTE-Medium';
+font-family: 'GTE-Regular';
 }
 
 a:hover{
@@ -17,15 +17,15 @@ a:hover{
 }
 
 input{
-  font-family: 'GTE-Medium';
+  font-family: 'GTE-Regular';
 }
 
 button{
-  font-family: 'GTE-Medium';
+  font-family: 'GTE-Regular';
 }
 
 select{
-  font-family: 'GTE-Medium';
+  font-family: 'GTE-Regular';
   border: none !important;
   color: gray !important;
   background-color: whitesmoke !important;
@@ -62,5 +62,4 @@ table{
 .table td{
   border: none !important;
 }
-
 

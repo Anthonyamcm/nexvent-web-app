@@ -49,7 +49,7 @@ class DashboardGraph extends Component{
                             </select>
                         </div>
                         </div>
-                        <div style={{backgroundColor: 'whitesmoke', borderRadius: 12, padding: 5}}>
+                        <div style={{padding: 5}}>
                         <ResponsiveContainer width={'99%'} aspect={2.5}>           
                           <AreaChart data={data}>
                             <defs>

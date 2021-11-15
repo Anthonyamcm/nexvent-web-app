@@ -8,6 +8,10 @@ const Account = lazy(() =>
 import(/* webpackChunkName: "Account" */ '../../../views/containers/Account/Account')
 );
 
+const Event = lazy(() =>
+import(/* webpackChunkName: "Account" */ '../../../views/containers/Event/Event')
+);
+
 
 const AllDashboardRoutes = [
     {
@@ -15,15 +19,23 @@ const AllDashboardRoutes = [
       path: '/Dashboard',
       component: Dashboard,
       exact: true,
-      private: false,
+      private: true,
     },
     {
       feature: 'ACCOUNT',
       path: '/Account',
       component: Account,
       exact: true,
-      private: false,
+      private: true,
+    },
+    {
+      feature: 'Event',
+      path: '/Event',
+      component: Event,
+      exact: true,
+      private: true,
     }
+
 ]
 
 

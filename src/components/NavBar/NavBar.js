@@ -24,6 +24,7 @@ class NavBar extends Component {
                   <a className="navbar-item is-active" href="/">Home</a>
                   <a className="navbar-item" href="https://bulma.io/">Features</a>
                   <a className="navbar-item" href="https://bulma.io/">Pricing</a>
+                  <a className="navbar-item" href="https://bulma.io/">Contact Us</a>
                   <a className="navbar-item button" href="/signup">Sign Up</a>
                 </div>
               </div>

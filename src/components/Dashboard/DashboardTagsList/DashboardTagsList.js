@@ -18,7 +18,7 @@ class DashboardTagsList extends Component {
                         </select>
                     </div>
                 </div>
-                <div style={{overflowY: 'scroll', overflowX: 'hidden', height: "80%", backgroundColor: "Whitesmoke", borderRadius: 12, padding: 20 }}>
+                <div style={{overflowY: 'scroll', overflowX: 'hidden', height: "80%", padding: 20 }}>
                     <div className="columns">
                         <div className="column is-full">
                             <div className="columns">

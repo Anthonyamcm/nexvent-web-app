@@ -17,7 +17,7 @@ class DashboardList extends Component{
                     </div>
                 </div>
                 <div style={{overflowY: 'scroll', overflowX: 'hidden', height: '75%'}}>
-                    <table class="table is-fullwidth is-hoverable is-striped">
+                    <table class="table is-fullwidth is-hoverable">
                         
                         <tbody>
                             <tr>
