@@ -26,7 +26,7 @@ class SideBar extends Component {
                     </div>
                 </nav>
                 <div className="upper">
-                <a href="/Event" className="button mt-6">Create event</a>
+                <a href="/Create" className="button mt-6">Create event</a>
                 <div className="columns is-multiline mt-6 pb-0">
                     <div className="column is-full navigation">
                         <a href="/Dashboard" className="is-size-6 pl-5 is-active">

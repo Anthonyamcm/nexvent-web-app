@@ -1,3 +1,8 @@
+@import "~@creativebulma/bulma-divider";
+@import "../node_modules/bulma-o-steps/bulma-steps.min.css";
+
+
+
 @font-face {
   font-family: 'GTE-Regular';
   src: local('GTE-Regular'), url(./fonts/GTEestiDisplay-Regular.ttf) format('truetype');
@@ -61,5 +66,10 @@ table{
 
 .table td{
   border: none !important;
+}
+
+.steps.is-vertical .steps-segment:not(:last-child){
+  min-height: auto;
+  flex-grow: 0 !important;
 }
 

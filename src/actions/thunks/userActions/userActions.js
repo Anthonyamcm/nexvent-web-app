@@ -30,7 +30,6 @@ import {
     try {
       dispatch({ type: AUTH_USER_PENDING });
       const res = await API.AUTHENTICATION().login(credentials);
-      console.log(res)
       if (res.status.code === 200) {
         console.log('callback', callback);
   

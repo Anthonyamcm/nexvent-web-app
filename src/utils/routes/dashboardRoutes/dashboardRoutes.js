@@ -8,10 +8,9 @@ const Account = lazy(() =>
 import(/* webpackChunkName: "Account" */ '../../../views/containers/Account/Account')
 );
 
-const Event = lazy(() =>
-import(/* webpackChunkName: "Account" */ '../../../views/containers/Event/Event')
+const Create = lazy(() =>
+import(/* webpackChunkName: "Account" */ '../../../views/containers/Create/Create')
 );
-
 
 const AllDashboardRoutes = [
     {
@@ -29,9 +28,9 @@ const AllDashboardRoutes = [
       private: true,
     },
     {
-      feature: 'Event',
-      path: '/Event',
-      component: Event,
+      feature: 'CREATE',
+      path: '/Create',
+      component: Create,
       exact: true,
       private: true,
     }

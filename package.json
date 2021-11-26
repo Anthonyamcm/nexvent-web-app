@@ -7,20 +7,27 @@
         "@testing-library/jest-dom": "^5.11.4",
         "@testing-library/react": "^11.1.0",
         "@testing-library/user-event": "^12.1.10",
+        "@wojtekmaj/react-timerange-picker": "^3.4.2",
         "axios": "^0.24.0",
         "bulma": "^0.9.3",
+        "bulma-o-steps": "^1.1.0",
         "history": "^5.1.0",
         "lodash.throttle": "^4.1.1",
         "moment-timezone": "^0.5.33",
         "react": "^17.0.2",
+        "react-calendar": "^3.5.0",
         "react-dom": "^17.0.2",
+        "react-drag-drop-files": "^2.1.16",
         "react-favicon": "^0.0.25",
+        "react-files": "^2.4.9",
+        "react-google-places-autocomplete": "^3.3.2",
         "react-icons": "^4.3.1",
         "react-redux": "^7.2.6",
         "react-router": "^5.2.0",
         "react-router-dom": "^5.2.0",
         "react-router-redux": "^4.0.8",
         "react-scripts": "4.0.3",
+        "react-select": "^5.2.1",
         "react-transition-group": "^4.4.2",
         "recharts": "^2.1.6",
         "redux-thunk": "^2.4.0",
@@ -51,5 +58,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "@creativebulma/bulma-divider": "^1.1.0"
     }
 }

@@ -1,0 +1,81 @@
+.create{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    overflow: hidden;
+    background-color: whitesmoke;
+
+    .box:not(:last-child){
+        margin-bottom: 0;
+    }
+
+    .create-main{
+        min-height: 100%;
+        padding-top: 0;
+        padding-right: 0rem;
+        padding-bottom: 0rem;
+        display: flex; 
+        flex-direction: column;
+
+
+        .create-form{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .field{
+
+                flex: 1;
+                
+                .react-datepicker-wrapper{
+                    input{
+                        -webkit-align-items: center;
+                        -webkit-box-align: center;
+                        -ms-flex-align: center;
+                        align-items: center;
+                        background-color: hsl(0, 0%, 100%);
+                        border-color: hsl(0, 0%, 80%);
+                        border-radius: 4px;
+                        border-style: solid;
+                        border-width: 1px;
+                        cursor: default;
+                        text-align: center;
+                        display: -webkit-box;
+                        display: -webkit-flex;
+                        display: -ms-flexbox;
+                        display: flex;
+                        -webkit-box-flex-wrap: wrap;
+                        -webkit-flex-wrap: wrap;
+                        -ms-flex-wrap: wrap;
+                        flex-wrap: wrap;
+                        -webkit-box-pack: justify;
+                        -webkit-justify-content: space-between;
+                        justify-content: space-between;
+                        min-height: 38px;
+                        outline: 0!important;
+                        position: relative;
+                        -webkit-transition: all 100ms;
+                        transition: all 100ms;
+                        box-sizing: border-box;
+                        width: 100%;
+                    }
+                }
+
+            }
+
+        }
+
+        .files-dropzone{
+            text-align: center;
+            border: 2px dotted lightgray;
+            padding: 2.5rem;
+            border-radius: 6px;
+        }
+    }
+
+
+}
