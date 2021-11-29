@@ -1,4 +1,3 @@
-import { Date } from "core-js";
 import React, {Component} from "react";
 import EventCalendar from "../../../components/Create/EventCalendar/EventCalendar";
 import EventDescription from "../../../components/Create/EventDescription/EventDescription";
@@ -15,8 +14,9 @@ class Create extends Component{
         super(props);
 
         this.state = {
-            step: 1,
+            step: 7,
             title: '',
+            description: '',
             location: '',
             date: null,
             tags: []
@@ -45,11 +45,10 @@ class Create extends Component{
 
     setTags = (e) => {
         this.setState({
-            tags: e.label
+            tags: e
         })
     }
 
-    
     render() {
 
         const{
@@ -72,17 +71,27 @@ class Create extends Component{
                                                 <EventImage/>
                                             </div>
                                         </li>
-                                        <li className={`steps-segment ${this.state.step === 1 ? 'is-active': ''}`}>
+                                        <li className={`steps-segment ${this.state.step === 2 ? 'is-active': ''}`}>
                                             <span className="steps-marker"></span>
                                             <div className="steps-content">
                                                 <p className="is-size-4">Title</p>
-                                                <p>Choose a title</p>
+                                                <p>Name of the event</p>
                                                 <EventTitle
                                                     onChange={this.onChange}
                                                     value={this.state.title}/>
                                             </div>
                                         </li>
-                                        <li className={`steps-segment ${this.state.step === 1 ? 'is-active': ''}`}>
+                                        <li className={`steps-segment ${this.state.step === 4 ? 'is-active': ''}`}>
+                                            <span className="steps-marker"></span>
+                                            <div className="steps-content">
+                                                <p className="is-size-4">Description</p>
+                                                <p>write a description</p>
+                                                <EventDescription
+                                                    onChange={this.onChange}
+                                                    value={this.state.description}/>
+                                            </div>
+                                        </li>
+                                        <li className={`steps-segment ${this.state.step === 3 ? 'is-active': ''}`}>
                                             <span className="steps-marker"></span>
                                             <div className="steps-content">
                                                 <p className="is-size-4">Tags</p>
@@ -92,24 +101,17 @@ class Create extends Component{
                                                     value={this.state.tags}/>
                                             </div>
                                         </li>
-                                        <li className={`steps-segment ${this.state.step === 1 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Description</p>
-                                                <p>write a description</p>
-                                                <EventDescription/>
-                                            </div>
-                                        </li>
-                                        <li className={`steps-segment ${this.state.step === 2 ? 'is-active': ''}`}>
+                                        <li className={`steps-segment ${this.state.step === 5 ? 'is-active': ''}`}>
                                             <span className="steps-marker"></span>
                                             <div className="steps-content">
                                                 <p className="is-size-4">Location</p>
                                                 <p>Pick the location</p>
                                                 <EventLocation
+                                                    value={this.state.location}
                                                     onChange={this.setlocation}/>
                                             </div>
                                         </li>
-                                        <li className={`steps-segment ${this.state.step === 2 ? 'is-active': ''}`}>
+                                        <li className={`steps-segment ${this.state.step === 6 ? 'is-active': ''}`}>
                                             <span className="steps-marker"></span>
                                             <div className="steps-content">
                                                 <p className="is-size-4">Date(s) & Time</p>
@@ -119,7 +121,7 @@ class Create extends Component{
                                                     onChange={this.setState}/>
                                             </div>
                                         </li>
-                                        <li className={`steps-segment ${this.state.step === 2 ? 'is-active': ''}`}>
+                                        <li className={`steps-segment ${this.state.step === 7 ? 'is-active': ''}`}>
                                             <span className="steps-marker"></span>
                                             <div className="steps-content">
                                                 <p className="is-size-4">Review</p>

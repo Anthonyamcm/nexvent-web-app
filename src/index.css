@@ -13,6 +13,11 @@
     src: local('GTE-Medium'), url(./fonts/GTEestiDisplay-Medium.ttf) format('truetype');
 }
 
+.is-gradient{
+  background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%) !important;
+  color: white !important;
+}
+
 body {
 font-family: 'GTE-Regular';
 }
@@ -73,3 +78,10 @@ table{
   flex-grow: 0 !important;
 }
 
+.steps.is-hollow .steps-marker{
+  border: 0.3rem solid rgba(0,198,255,1) !important;
+}
+
+.steps-segment:after{
+  background: linear-gradient(180deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%) !important;
+}
