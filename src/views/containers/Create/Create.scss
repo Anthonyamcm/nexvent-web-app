@@ -21,6 +21,10 @@
         display: flex; 
         flex-direction: column;
 
+        article{
+            padding-right: 0;
+        }
+
 
         .create-form{
             display: flex;
@@ -34,6 +38,7 @@
     
         .file-name{
             min-width: 100% !important;
+            text-align: center;
         }
 
     }

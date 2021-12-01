@@ -29,6 +29,9 @@ a:hover{
 input{
   font-family: 'GTE-Regular';
 }
+textarea{
+  font-family: 'GTE-Regular';
+}
 
 button{
   font-family: 'GTE-Regular';

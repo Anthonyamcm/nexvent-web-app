@@ -7,6 +7,11 @@ import EventTags from "../../../components/Create/EventTags/EventTags";
 import EventTitle from "../../../components/Create/EventTtile/EventTitle";
 import Review from "../../../components/Create/Review/Review";
 import SideBar from "../../../components/SideBar/SideBar";
+import { geocodeByPlaceId, getLatLng } from 'react-google-places-autocomplete';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
+import { createEvent } from "../../../actions/thunks/userActions/userActions";
 import './Create.scss'
 
 class Create extends Component{
@@ -15,12 +20,19 @@ class Create extends Component{
 
         this.state = {
             step: 7,
+            imageURL: '',
+            imageName: '',
             title: '',
             description: '',
-            location: '',
-            date: null,
-            tags: []
+            location: [],
+            dates: [],
+            times: [],
+            tags: [],
+            companyID: JSON.parse(localStorage.getItem('session')).id,
+            submitting: false
         }
+
+        this.create = this.create.bind(this);
     }
 
     onChange = (e) => {
@@ -30,24 +42,70 @@ class Create extends Component{
         });
     }
 
-
-    setlocation = (e) => {
+    setImage = (e) => {
         this.setState({
-            location: e.label
+            imageURL: URL.createObjectURL(e.target.files[0]),
+            imageName: e.target.files[0].name
         })
     }
 
-    setDate = (date) => {
+
+    setLocation = (locationData) => {
+        geocodeByPlaceId(locationData.value.place_id)
+        .then(results => getLatLng(results[0]))
+        .then(({ lat, lng }) => this.setState({location: [locationData.label , lat , lng]}))
+    }
+
+    setDates = (dates) => {
         this.setState({
-            date
+            dates: [dates]
         })
     }
 
-    setTags = (e) => {
+    setTime = (times) => {
         this.setState({
-            tags: e
+            times
         })
     }
+
+    setTags = (tags) => {
+        this.setState({
+            tags
+        })
+    }
+
+    async create() {
+        this.setState({
+          submitting: true,
+        });
+        
+        const { imageURL, title , description, location, dates, times, tags, companyID} = this.state;
+        const eventInfo = {
+            imageURL,
+            title,
+            description,
+            location,
+            dates,
+            times,
+            tags,
+            companyID
+        };
+        await this.createEvent(eventInfo);
+      }
+
+    async createEvent(eventInfo) {
+        const { dispatchCreation, history } = this.props;
+        const result = await dispatchCreation(eventInfo);
+        if (result) {
+          history.push('/Dashboard');
+        } else {
+          this.setState({
+            submitting: false,
+            inValid: true,
+            errorMessage: 'Nope'
+          });
+        }
+      }
 
     render() {
 
@@ -68,7 +126,10 @@ class Create extends Component{
                                             <div className="steps-content">
                                                 <p className="is-size-4">Image</p>
                                                 <p>Upload an image</p>
-                                                <EventImage/>
+                                                <EventImage
+                                                    onChange={this.setImage}
+                                                    imageURL={this.state.imageURL}
+                                                    imageName={this.state.imageName}/>
                                             </div>
                                         </li>
                                         <li className={`steps-segment ${this.state.step === 2 ? 'is-active': ''}`}>
@@ -108,7 +169,7 @@ class Create extends Component{
                                                 <p>Pick the location</p>
                                                 <EventLocation
                                                     value={this.state.location}
-                                                    onChange={this.setlocation}/>
+                                                    onChange={this.setLocation}/>
                                             </div>
                                         </li>
                                         <li className={`steps-segment ${this.state.step === 6 ? 'is-active': ''}`}>
@@ -117,8 +178,10 @@ class Create extends Component{
                                                 <p className="is-size-4">Date(s) & Time</p>
                                                 <p>Pick the date(s) and time</p>
                                                 <EventCalendar
-                                                    date={this.state.date}
-                                                    onChange={this.setState}/>
+                                                    dates={this.state.dates}
+                                                    onChange={this.setDates}
+                                                    times={this.state.times}
+                                                    timeChange={this.setTime}/>
                                             </div>
                                         </li>
                                         <li className={`steps-segment ${this.state.step === 7 ? 'is-active': ''}`}>
@@ -126,7 +189,7 @@ class Create extends Component{
                                             <div className="steps-content">
                                                 <p className="is-size-4">Review</p>
                                                 <p>Review the event before uploading</p>
-                                                <Review/>
+                                                <button className= {`button mt-5 ${this.state.submitting === true ? 'is-loading': ''}`} onClick={this.create}>Create</button>
                                             </div>
                                         </li>
                                     </ul>
@@ -140,4 +203,15 @@ class Create extends Component{
     }
 }
 
-export default Create
+const mapDispatchToProps = (dispatch) => ({
+    dispatchCreation: (cb) => dispatch(createEvent(cb)),
+  });
+
+  Create.propTypes = {
+    history: PropTypes.instanceOf(Object).isRequired,
+    dispatchCreation: PropTypes.func.isRequired,
+  };
+  
+  export default connect(null, mapDispatchToProps)(withRouter(Create));
+
+  export { Create as TestComponent };

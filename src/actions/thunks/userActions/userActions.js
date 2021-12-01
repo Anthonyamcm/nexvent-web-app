@@ -10,6 +10,10 @@ import {
     USER_LOGOUT_ERROR,
     RESET_STATE,
     UPDATE_ME,
+
+    CREATE_EVENT_PENDING,
+    CREATE_EVENT_SUCCESS,
+    CREATE_EVENT_ERROR
   } from '../../actionTypes/actionTypes';
   import constant from '../../../utils/constant/constant.js';
   import API from '../../../utils/api';
@@ -17,7 +21,6 @@ import {
   const isAuthorized = () => (dispatch) => {
     // dispatch({ type: CHECK_USER_LOGGED_IN_PENDING });
     const user = localStorage.getItem('session') ? JSON.parse(localStorage.getItem('session')) : null;
-    console.log(user)
     if (user) {
       dispatch({ type: CHECK_USER_LOGGED_IN_SUCCESS, payload: user });
       return true;
@@ -31,10 +34,7 @@ import {
       dispatch({ type: AUTH_USER_PENDING });
       const res = await API.AUTHENTICATION().login(credentials);
       if (res.status.code === 200) {
-        console.log('callback', callback);
-  
         if (callback) {
-          console.log('callback', callback);
           callback(res);
         }
         dispatch({ type: AUTH_USER_SUCCESS, payload: res.body });
@@ -52,12 +52,8 @@ import {
     try {
       dispatch({ type: AUTH_USER_PENDING });
       const res = await API.AUTHENTICATION().register(credentials);
-      console.log(res)
       if (res.status.code === 200) {
-        console.log('callback', callback);
-  
         if (callback) {
-          console.log('callback', callback);
           callback(res);
         }
         dispatch({ type: AUTH_USER_SUCCESS, payload: res.body });
@@ -67,6 +63,25 @@ import {
     } catch (error) {
       console.log(error)
       dispatch({ type: AUTH_USER_ERROR, payload: error.message });
+      return false;
+    }
+  };
+
+  const createEvent = (credentials, callback) => async (dispatch) => {
+    try {
+      dispatch({ type: CREATE_EVENT_PENDING });
+      const res = await API.DASHBOARD().create(credentials);
+      if (res.code === 200) {
+        if (callback) {
+          callback(res);
+        }
+        dispatch({ type: CREATE_EVENT_SUCCESS, payload: res.body });
+        return true;
+      }
+      throw Error(res.message);
+    } catch (error) {
+      console.log(error)
+      dispatch({ type: CREATE_EVENT_ERROR, payload: error.message });
       return false;
     }
   };
@@ -88,4 +103,4 @@ import {
     }
   };
   
-  export { isAuthorized, authenticateUser, registerUser, userLogout, updateMe };
+  export { isAuthorized, authenticateUser, registerUser, createEvent, userLogout, updateMe };

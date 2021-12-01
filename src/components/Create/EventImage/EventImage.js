@@ -11,7 +11,7 @@ class EventImage extends Component{
                         <div className="control">
                             <div className="file has-name is-boxed">
                             <label className="file-label">
-                                <input className="file-input" type="file" name="resume"/>
+                                <input className="file-input" type="file" onChange={(e) => this.props.onChange(e)} name="image"/>
                                 <span className="file-cta">
                                 <span className="file-icon">
                                     <FaUpload/>
@@ -21,7 +21,7 @@ class EventImage extends Component{
                                 </span>
                                 </span>
                                 <span className="file-name">
-                                Screen Shot 2017-07-29 at 15.54.25.png
+                                {this.props.imageName}
                                 </span>
                             </label>
                             </div>
@@ -29,9 +29,9 @@ class EventImage extends Component{
                     </div>
                 </div>
                 <div className="column is-1"/>
-                <div className="column is-6 py-6">
+                <div className="column is-6 py-6 pl-6">
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                    <h1 className="pt-6 is-pulled-right">Status:<span className="tag is-danger ml-2 is-align-self-flex-end">Incomplete</span></h1>
+                    <h1 className="pt-6 is-pulled-right">Status:<span className={`tag ml-2 ${this.props.imageURL !== '' ? 'is-success': 'is-danger'}`}>{this.props.imageURL !== '' ? 'Complete' : 'Incomplete'}</span></h1>
                 </div>
             </div>
         )

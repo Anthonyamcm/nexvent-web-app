@@ -134,6 +134,14 @@ const AUTHENTICATION = () => ({
   }
 });
 
+
+const DASHBOARD = () => ({
+  create: (objectData) => {
+    attachAuthToken();
+    return instance.post('/events/create', objectData);
+  }
+})
+
 const USER = () => ({
   get_userinfo: () => instance.get('/api/users/me'),
   update_userinfo: (objectData) => instanceMultiFormData.put('/api/users/me', objectData),
@@ -142,5 +150,6 @@ const USER = () => ({
 
 export default {
   AUTHENTICATION,
+  DASHBOARD,
   USER
 };
