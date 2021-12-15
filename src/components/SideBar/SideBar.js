@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import {Component} from "react";
 import logo from '../../assets/nexvent-logo.png'
 import {FaRegUser} from 'react-icons/fa'
 import {FiSliders} from 'react-icons/fi'

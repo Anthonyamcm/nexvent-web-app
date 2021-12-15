@@ -14,15 +14,101 @@
     }
 
     .create-main{
-        min-height: 100%;
-        padding-top: 0;
-        padding-right: 0rem;
-        padding-bottom: 0rem;
         display: flex; 
         flex-direction: column;
 
         article{
-            padding-right: 0;
+
+            .form{
+                min-height: 100%;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .details-form{
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                min-height: 100%;
+
+                .form-footer{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+
+                .is-next{
+                    background: linear-gradient(90deg, rgba(0,198,255,1) 0%, rgba(0,114,255,1) 100%);
+                    border: none;
+                    border-radius: 8px;
+                    padding: 1.25rem;
+                    box-shadow: 0px 0px 15px 4px rgb(0 198 255 / 25%) !important;
+                }
+
+                .is-previous{
+                    border: none;
+                    padding: 1.25rem;
+                }
+            }
+
+            .right-panel{
+                height: 100%;
+                background: white;
+                display: flex;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                border-radius: 32px;
+                box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 5%) !important;
+
+                .footer{
+                    color: white;
+                    display: flex;
+                    flex-direction: column;
+                    align-self: flex-end;
+                    justify-content: center;
+                    padding: 1.5rem;
+                    flex: 1;
+                    font-weight: 700 !important;
+                    overflow-wrap: break-word;
+                    width: 100%;
+                    border-radius: 0 0 32px 32px;
+                    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%);
+
+                    .tag-contianer{
+                        display: flex;
+                        flex: 1;
+                        flex-direction: row;
+                    }
+
+                    .footer-tag{
+                        background: none; 
+                        border-style: solid;
+                        border-color: white;
+                        border-width: 2px;
+                        border-radius: 32px;
+                        font-weight: 700;
+                        padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+                        color: white;
+                        border-radius: 32;
+                    }
+                }
+
+                .image-head{
+                    width: 100%;
+                    height: 50%;
+                    border-radius: 32px 32px 0 0;
+                    object-fit: cover;
+                  }
+
+                .info-container{
+                    background: white;
+                    border-radius: 32px;
+                    box-shadow: 0px 0px 15px 4px rgb(0 0 0 / 5%) !important;
+                }
+
+            }
         }
 
 
@@ -33,12 +119,197 @@
         }
 
         .file{
-            display: inline !important;
+            display: inline;
+            font-weight: 700;
+        }
+
+        .file-cta {
+            min-height: 48px;
+            border-radius: 8px 0 0 8px;
+            border-top: none;
+            border-bottom: none;
+            border-left: none;
+        }
+
+        .file-label {
+            align-items: center;
+            min-height: 48px;
         }
     
         .file-name{
-            min-width: 100% !important;
-            text-align: center;
+            background-color: whitesmoke;
+            width: 100%;
+            min-height: 48px;
+            justify-content: flex-start;
+            align-self: center;
+            display: flex;
+            max-width: 100%;
+            border-radius: 0px 8px 8px 0px;
+            border: none;
+        }
+
+    }
+
+    .react-calendar{
+
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        cursor: default;
+        text-align: center;
+        border-radius: 8px;
+        padding: 0 1rem 0 1rem;
+        background-color: whitesmoke !important;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-box-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        outline: 0!important;
+        position: relative;
+        display: flex;
+        -webkit-transition: all 100ms;
+        transition: all 100ms;
+        box-sizing: border-box;
+        width: 100%;
+        font-weight: 700;
+    
+        .react-calendar__navigation{
+    
+            display: flex;
+
+            .react-calendar__navigation__prev2-button{
+                display: none;   
+            }
+    
+            .react-calendar__navigation__prev-button{
+                background: none;
+                border: none;
+                font-weight: 700;
+                font-size: 24px;
+            }
+    
+            .react-calendar__navigation__label{
+                padding: 1rem 0.5rem 1rem 0.5rem;
+                background: none;
+                border: none;
+                font-size: 24px;
+                font-weight: 700;
+                color: black;
+            }
+    
+            .react-calendar__navigation__next-button{
+                background: none;
+                border: none;
+                font-weight: 700;
+                font-size: 24px;
+            }
+    
+            .react-calendar__navigation__next2-button{
+                background: none;
+                border: none;
+            }
+        }
+    
+        .react-calendar__viewContainer{
+            padding: 1rem 0 1rem 0;
+    
+            .react-calendar__month-view__weekdays__weekday{
+                abbr[title]{
+                    text-decoration: none;
+                }
+    
+            }
+    
+            .react-calendar__month-view__days__day{
+                padding: 0.5rem;
+                background-color: whitesmoke ;
+                border: none;
+                font-weight: 700;
+    
+                .react-calendar__tile.react-calendar__tile--now.react-calendar__tile--active.react-calendar__tile--range.react-calendar__tile--rangeStart.react-calendar__month-view__days__day{
+                    border-radius: 0 0 8px 8px;
+                }
+    
+                .react-calendar--selectRange .react-calendar__tile--hover{
+                    background: rgba(0,114,255,0.5);
+                }
+    
+            }
+    
+            .react-calendar__tile--active{
+                background-color: gray;
+                border: none;
+                color: white;
+            }
+    
+        }
+    
+    }
+
+    .react-timerange-picker{
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        cursor: default;
+        text-align: center;
+        border-radius: 8px;
+        padding: 0 1rem 0 1rem;
+        background-color: whitesmoke !important;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-box-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        min-height: 48px;
+        outline: 0!important;
+        position: relative;
+        display: flex;
+        -webkit-transition: all 100ms;
+        transition: all 100ms;
+        box-sizing: border-box;
+        font-weight: 700;
+    
+        .react-timerange-picker__wrapper{
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        cursor: default;
+        border: none;
+        text-align: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        -webkit-box-flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        min-height: 48px;
+        outline: 0!important;
+        position: relative;
+        display: flex;
+        -webkit-transition: all 100ms;
+        transition: all 100ms;
+        box-sizing: border-box;
+        width: 100%;
+        font-weight: 700;
+    
         }
 
     }

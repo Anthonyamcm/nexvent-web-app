@@ -1,38 +1,58 @@
-import React, {Component} from "react";
-import EventCalendar from "../../../components/Create/EventCalendar/EventCalendar";
-import EventDescription from "../../../components/Create/EventDescription/EventDescription";
-import EventImage from "../../../components/Create/EventImage/EventImage";
-import EventLocation from "../../../components/Create/EventLocation/EventLocation";
-import EventTags from "../../../components/Create/EventTags/EventTags";
-import EventTitle from "../../../components/Create/EventTtile/EventTitle";
-import Review from "../../../components/Create/Review/Review";
+import {Component} from "react";
 import SideBar from "../../../components/SideBar/SideBar";
-import { geocodeByPlaceId, getLatLng } from 'react-google-places-autocomplete';
+import Input from "../../../components/Input/Input";
+import TextArea from "../../../components/TextArea/TextArea";
+import GooglePlacesAutocomplete , { geocodeByPlaceId, getLatLng } from 'react-google-places-autocomplete';
+import Select from 'react-select'
+import Calendar from 'react-calendar';
+import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import { createEvent } from "../../../actions/thunks/userActions/userActions";
+import {FaUpload} from 'react-icons/fa'
+import {IoLocationOutline} from 'react-icons/io5'
 import './Create.scss'
+import Steper from "../../../components/Steper/Steper";
 
 class Create extends Component{
     constructor(props){
         super(props);
 
         this.state = {
-            step: 7,
-            imageURL: '',
+            step: 1,
+
+            imageURL: null,
             imageName: '',
             title: '',
             description: '',
-            location: [],
-            dates: [],
-            times: [],
+            locationData: '',
+            
+            location: {},
+            
+            times: ["00:00", "00:00"],
+            dates: [new Date(), new Date()],
             tags: [],
+
             companyID: JSON.parse(localStorage.getItem('session')).id,
             submitting: false
         }
 
         this.create = this.create.bind(this);
+    }
+
+    back = () => {
+        const{step} = this.state
+        this.setState({
+            step: step - 1
+        })
+    }
+
+    next = () => {
+        const{step} = this.state
+        this.setState({
+            step: step + 1
+        })
     }
 
     onChange = (e) => {
@@ -53,13 +73,15 @@ class Create extends Component{
     setLocation = (locationData) => {
         geocodeByPlaceId(locationData.value.place_id)
         .then(results => getLatLng(results[0]))
-        .then(({ lat, lng }) => this.setState({location: [locationData.label , lat , lng]}))
+        .then(({ lat, lng }) => this.setState({location: { name: locationData.label, lat: lat, lng: lng}}))
+        .then(this.setState({locationData}))
     }
 
     setDates = (dates) => {
         this.setState({
-            dates: [dates]
+            dates
         })
+        console.log(dates)
     }
 
     setTime = (times) => {
@@ -78,8 +100,9 @@ class Create extends Component{
         this.setState({
           submitting: true,
         });
-        
+
         const { imageURL, title , description, location, dates, times, tags, companyID} = this.state;
+
         const eventInfo = {
             imageURL,
             title,
@@ -110,89 +133,246 @@ class Create extends Component{
     render() {
 
         const{
-            step
+            step,
+            title,
+            description,
+            imageName,
+            imageURL,
+            tags,
+            locationData,
+            times,
+            dates,
+            submitting,
+            companyID
         } = this.state
+
+        const options = [
+            { value: 'Festival', label: 'Festival' },
+            { value: 'Performance', label: 'Performance' },
+            { value: 'Fair', label: 'Fair' },
+            { value: 'Drag', label: 'Drag' },
+            { value: 'Show', label: 'Show' },
+            { value: '18+', label: '18+' },
+        ]
+
         return(
             <div className="create">
                 <SideBar/>
-                <div className="create-main column is-three-fifth">
+                <div className="create-main column is-three-fifth is-fullheight">
                     <div className="tile is-ancestor" style={{overflow: 'hidden'}}>
                         <div className="tile is-parent">
                             <article className="tile is-child box">
-                                <div style={{overflowY: 'scroll', overflowX: 'hidden', height: '100%' }}>
-                                    <ul className="steps has-gaps is-vertical is-hollow p-5">
-                                        <li className={`steps-segment ${this.state.step === 1 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Image</p>
-                                                <p>Upload an image</p>
-                                                <EventImage
-                                                    onChange={this.setImage}
-                                                    imageURL={this.state.imageURL}
-                                                    imageName={this.state.imageName}/>
+                                <div className="columns" style={{margin: 0, minHeight: '100%'}}>
+                                    <div className ="column is-6 px-6 is-fullheight">
+                                        <div className='form'>
+                                            <Steper/>
+                                            {step === 1 && (
+                                                <div className="details-form" >
+                                                <h1 className="py-2 is-size-3" >A little bit about it</h1>
+                                                <p className="is-size-6 has-text-grey-light">Please fill in some of the basic details to get started</p>
+                                                <div className="field pt-6">
+                                                    <div className="control">
+                                                    <div class="file is-normal has-name">
+                                                        <label class="file-label">
+                                                            <input class="file-input" type="file" name="image" onChange={(e) => this.setImage(e)}/>
+                                                                <span class="file-cta">
+                                                                <span class="file-icon">
+                                                                    <FaUpload/>
+                                                                </span>
+                                                                <span class="file-label">
+                                                                   Image
+                                                                </span>
+                                                                </span>
+                                                                <span class="file-name">
+                                                                    {imageName}
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="field pt-5">
+                                                    <div className="control">
+                                                        <Input 
+                                                            value={title}
+                                                            type="text"
+                                                            name="title" 
+                                                            id="title"
+                                                            placeholder='Title' 
+                                                            onChange={(e) => this.onChange(e)}
+                                                            />
+                                                    </div>
+                                                </div>
+                                                <div className="field pt-5">
+                                                        <div className="control">
+                                                            <GooglePlacesAutocomplete 
+                                                                apiKey="AIzaSyDB3m9IgLnTqEBC-GxuHeuAHjSkyyJZwKw"
+                                                                textInputProps={{
+                                                                    placeholderTextColor: 'lightgray',
+                                                                }}
+                                                                selectProps={{
+                                                                    value: locationData,
+                                                                    onChange:(e) => this.setLocation(e),
+                                                                    isClearable: true,
+                                                                    placeholder: 'Location',
+                                                                    styles: {
+                                                                        control: (provided) => ({
+                                                                            ...provided,
+                                                                            alignItems: 'center',
+                                                                            cursor: 'default',
+                                                                            borderRadius: 8,
+                                                                            padding: '0 0 0 0.5rem',
+                                                                            backgroundColor: 'whitesmoke',
+                                                                            flexWrap: 'wrap',
+                                                                            justifyContent: 'space-between',
+                                                                            minHeight: '48px',
+                                                                            outline: '0',
+                                                                            position: 'relative',
+                                                                            display: 'flex',
+                                                                            border: 'none',
+                                                                            boxShadow: 'none',
+                                                                            boxSiazing: 'border-box',
+                                                                            width: '100%',
+                                                                            fontWeight: 700,
+                                                                        }),
+                                                                        placeholder: (provided) => ({
+                                                                            ...provided,
+                                                                            fontWeight: 700,
+                                                                            color: '#bbbbbb',
+                                                                        }),
+                                                                        menu: (provided) => ({
+                                                                            ...provided,
+                                                                            backgroundColor: 'whitesmoke',
+                                                                            fontWeight: 700
+                                                                        }),
+                                                                    },
+                                                                    }}
+                                                                minLengthAutocomplete={3}
+                                                                autocompletionRequest={{ componentRestrictions: { country:["UK"]}, types: ['geocode'],  }}/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="field pt-5" style={{flex: 1}}>
+                                                        <div className="control">
+                                                            <Select 
+                                                                options={options}
+                                                                name='tags' 
+                                                                value={tags} 
+                                                                isMulti 
+                                                                onChange={(e) => this.setTags(e)}
+                                                                placeholder={'Tags'}
+                                                                styles = {{control: (provided) => ({
+                                                                    ...provided,
+                                                                    alignItems: 'center',
+                                                                    cursor: 'default',
+                                                                    borderRadius: 8,
+                                                                    padding: '0 0 0 0.5rem',
+                                                                    backgroundColor: 'whitesmoke',
+                                                                    flexWrap: 'wrap',
+                                                                    justifyContent: 'space-between',
+                                                                    minHeight: '48px',
+                                                                    outline: '0',
+                                                                    position: 'relative',
+                                                                    display: 'flex',
+                                                                    border: 'none',
+                                                                    boxShadow: 'none',
+                                                                    boxSiazing: 'border-box',
+                                                                    width: '100%',
+                                                                    fontWeight: 700,
+                                                                }),
+                                                                placeholder: (provided) => ({
+                                                                    ...provided,
+                                                                    fontWeight: 700,
+                                                                    color: '#bbbbbb',
+                                                                }),
+                                                                menu: (provided) => ({
+                                                                    ...provided,
+                                                                    backgroundColor: 'whitesmoke',
+                                                                    fontWeight: 700
+                                                                })}}/>
+                                                        </div>
+                                                    </div>
+                                                <button className='button is-next has-text-white' style={{alignSelf: 'flex-end'}} onClick={this.next}>Next Step</button>
                                             </div>
-                                        </li>
-                                        <li className={`steps-segment ${this.state.step === 2 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Title</p>
-                                                <p>Name of the event</p>
-                                                <EventTitle
-                                                    onChange={this.onChange}
-                                                    value={this.state.title}/>
+                                            )}
+                                            {step === 2 && (
+                                                <div className="details-form">
+                                                    <div className="field pt-5">
+                                                        <div className="control">
+                                                        <Calendar
+                                                            onChange={(e) => this.setDates(e)}
+                                                            onClickDay={(e) => this.setDates(e)}
+                                                            selectRange={true}
+                                                            value={dates}
+                                                            minDate={new Date()}
+                                                            maxDate={new Date('30-11-2022')}
+                                                            minDetail="month"
+                                                            maxDetail="month"
+                                                            defaultView="month"
+                                                            next2Label={null}/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="field">
+                                                        <div className="control">
+                                                            <TimeRangePicker
+                                                                    format="hh:mm"
+                                                                    clearIcon={null}
+                                                                    clockIcon={null}
+                                                                    disableClock={true}
+                                                                    value={times}
+                                                                    onChange={(e) => this.setTime(e)}/>
+                                                        </div>
+                                                    </div>
+                                                    <div className="field pt-5" style={{flex: 1}}>
+                                                        <div className="control">
+                                                            <TextArea 
+                                                                value={description}
+                                                                type="text"
+                                                                name="description" 
+                                                                id="description"
+                                                                placeholder='Description' 
+                                                                onChange={(e) => this.onChange(e)}
+                                                                />
+                                                        </div>
+                                                    </div>
+                                                    <div className="form-footer">
+                                                        <button className='button is-previous' style={{alignSelf: 'flex-start'}} onClick={this.back}>Previous Step</button>
+                                                        <button className={`button is-next has-text-white ${submitting === true ? 'is-loading': ''}`} style={{alignSelf: 'flex-start'}} onClick={this.create}>Submit</button>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className ="column is-6">
+                                    {step === 1 && (
+                                        <div className="right-panel" style={{backgroundImage: `url(${imageURL})`}}>
+                                            <div className='footer'>
+                                                <p className="pb-4 is-size-3" style={{flex: 1}}>{title === '' ? 'Placeholder' : title}</p>
+                                                {locationData === '' ? (
+                                                    <p className="pb-4 is-size-5" style={{display: 'flex', alignItems: 'center'}}><IoLocationOutline size={28}/>{'Street, City, Country'}</p>
+                                                ) : (
+                                                    <p className="pb-4 is-size-5" style={{display: 'flex', alignItems: 'center'}}><IoLocationOutline size={28}/> {locationData.label}</p>
+                                                )}
+                                                <div className="tag-continaer">
+                                                    {tags.length < 1 ? (
+                                                            <span className="footer-tag ml-1 mr-1 mt-2">Placeholder</span>
+                                                    ) : tags.map(({label}, index) =>  
+                                                        <span className="footer-tag ml-1 mr-1 mt-2" key={index}>{label}</span>
+                                                    )}
+                                                    
+                                                </div>
+                                                
                                             </div>
-                                        </li>
-                                        <li className={`steps-segment ${this.state.step === 4 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Description</p>
-                                                <p>write a description</p>
-                                                <EventDescription
-                                                    onChange={this.onChange}
-                                                    value={this.state.description}/>
-                                            </div>
-                                        </li>
-                                        <li className={`steps-segment ${this.state.step === 3 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Tags</p>
-                                                <p>Choose the tags that best desctibe the event</p>
-                                                <EventTags
-                                                    onChange={this.setTags}
-                                                    value={this.state.tags}/>
-                                            </div>
-                                        </li>
-                                        <li className={`steps-segment ${this.state.step === 5 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Location</p>
-                                                <p>Pick the location</p>
-                                                <EventLocation
-                                                    value={this.state.location}
-                                                    onChange={this.setLocation}/>
-                                            </div>
-                                        </li>
-                                        <li className={`steps-segment ${this.state.step === 6 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Date(s) & Time</p>
-                                                <p>Pick the date(s) and time</p>
-                                                <EventCalendar
-                                                    dates={this.state.dates}
-                                                    onChange={this.setDates}
-                                                    times={this.state.times}
-                                                    timeChange={this.setTime}/>
-                                            </div>
-                                        </li>
-                                        <li className={`steps-segment ${this.state.step === 7 ? 'is-active': ''}`}>
-                                            <span className="steps-marker"></span>
-                                            <div className="steps-content">
-                                                <p className="is-size-4">Review</p>
-                                                <p>Review the event before uploading</p>
-                                                <button className= {`button mt-5 ${this.state.submitting === true ? 'is-loading': ''}`} onClick={this.create}>Create</button>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    )}
+                                    {step === 2 && (
+                                    <div className="right-panel">
+                                        <img src={imageURL} className="image-head"/>
+                                        <div className="info-container">
+
+                                        </div>
+                                    </div>
+                                    )}
+                                        
+                                    </div>
                                 </div>
                             </article>
                         </div>

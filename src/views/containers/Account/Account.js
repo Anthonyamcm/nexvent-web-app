@@ -10,7 +10,7 @@ class Account extends Component {
             <div className="account">
                 <SideBar/>
                 <div className="account-main column is-three-fifth is-fullheight">
-                    <div className="tile is-ancestor" style={{flex:1, overflow: 'hidden'}}>
+                    <div className="tile is-ancestor" style={{overflow: 'hidden'}}>
                         <div className="tile is-parent">
                             <article className="tile is-child box">
                                 <div className="form">

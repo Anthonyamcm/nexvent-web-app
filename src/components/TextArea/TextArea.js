@@ -31,7 +31,7 @@ const TextArea = React.forwardRef(
       <React.Fragment>
         <textarea
           ref={ref}
-          className={`textarea ${invalidClass} ${focusedClass} ${addClass} ${variantClass}`}
+          className={`textarea has-fixed-size ${invalidClass} ${focusedClass} ${addClass} ${variantClass}`}
           disabled={disabled ? 'disabled' : ''}
           placeholder={placeholder}
           onChange={onChange}
