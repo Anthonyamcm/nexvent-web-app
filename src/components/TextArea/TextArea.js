@@ -45,6 +45,7 @@ const TextArea = React.forwardRef(
           pattern={pattern}
           id={id}
           valid={valid}
+          rows="10"
         />
       </React.Fragment>
     );

@@ -28,19 +28,22 @@ a:hover{
 
 input{
   font-family: 'GTE-Regular';
+  font-weight: 700;
 }
 textarea{
   font-family: 'GTE-Regular';
+  font-weight: 700;
 }
 
 button{
   font-family: 'GTE-Regular';
+  font-weight: 700;
 }
 
 select{
   font-family: 'GTE-Regular';
   border: none !important;
-  color: gray !important;
+  font-weight: 700 !important;
   background-color: whitesmoke !important;
 }
 

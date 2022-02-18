@@ -4,8 +4,8 @@ import Input from "../../../components/Input/Input";
 import TextArea from "../../../components/TextArea/TextArea";
 import GooglePlacesAutocomplete , { geocodeByPlaceId, getLatLng } from 'react-google-places-autocomplete';
 import Select from 'react-select'
-import Calendar from 'react-calendar';
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
+import { DropdownDate, DropdownComponent } from 'react-dropdown-date';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
@@ -14,6 +14,7 @@ import {FaUpload} from 'react-icons/fa'
 import {IoLocationOutline} from 'react-icons/io5'
 import './Create.scss'
 import Steper from "../../../components/Steper/Steper";
+import moment from "moment";
 
 class Create extends Component{
     constructor(props){
@@ -27,11 +28,13 @@ class Create extends Component{
             title: '',
             description: '',
             locationData: '',
+            address: '',
             
-            location: {},
+            loc: {},
             
             times: ["00:00", "00:00"],
-            dates: [new Date(), new Date()],
+            date: null,
+            selectedDate: moment(new Date).format('yyyy-MM-DD'),
             tags: [],
 
             companyID: JSON.parse(localStorage.getItem('session')).id,
@@ -73,16 +76,21 @@ class Create extends Component{
     setLocation = (locationData) => {
         geocodeByPlaceId(locationData.value.place_id)
         .then(results => getLatLng(results[0]))
-        .then(({ lat, lng }) => this.setState({location: { name: locationData.label, lat: lat, lng: lng}}))
+        .then(({ lat, lng }) => this.setState({loc: [lng, lat], address: locationData.label}))
         .then(this.setState({locationData}))
     }
 
-    setDates = (dates) => {
-        this.setState({
-            dates
-        })
-        console.log(dates)
-    }
+    formatDate = (date) => {	// formats a JS date to 'yyyy-mm-dd'
+        var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+      
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+      
+        return [year, month, day].join('-');
+      }
 
     setTime = (times) => {
         this.setState({
@@ -101,17 +109,20 @@ class Create extends Component{
           submitting: true,
         });
 
-        const { imageURL, title , description, location, dates, times, tags, companyID} = this.state;
+        const { imageURL, title , address, description, loc, date, times, tags, companyID} = this.state;
+
+        console.log(loc)
 
         const eventInfo = {
             imageURL,
             title,
+            address,
             description,
-            location,
-            dates,
+            loc,
+            date,
             times,
             tags,
-            companyID
+            companyID,
         };
         await this.createEvent(eventInfo);
       }
@@ -141,9 +152,8 @@ class Create extends Component{
             tags,
             locationData,
             times,
-            dates,
+            selectedDate,
             submitting,
-            companyID
         } = this.state
 
         const options = [
@@ -172,18 +182,18 @@ class Create extends Component{
                                                 <p className="is-size-6 has-text-grey-light">Please fill in some of the basic details to get started</p>
                                                 <div className="field pt-6">
                                                     <div className="control">
-                                                    <div class="file is-normal has-name">
-                                                        <label class="file-label">
-                                                            <input class="file-input" type="file" name="image" onChange={(e) => this.setImage(e)}/>
-                                                                <span class="file-cta">
-                                                                <span class="file-icon">
+                                                    <div className="file is-normal has-name">
+                                                        <label className="file-label">
+                                                            <input className="file-input" type="file" name="image" onChange={(e) => this.setImage(e)}/>
+                                                                <span className="file-cta">
+                                                                <span className="file-icon">
                                                                     <FaUpload/>
                                                                 </span>
-                                                                <span class="file-label">
+                                                                <span className="file-label">
                                                                    Image
                                                                 </span>
                                                                 </span>
-                                                                <span class="file-name">
+                                                                <span className="file-name">
                                                                     {imageName}
                                                                 </span>
                                                             </label>
@@ -203,7 +213,7 @@ class Create extends Component{
                                                     </div>
                                                 </div>
                                                 <div className="field pt-5">
-                                                        <div className="control">
+                                                    <div className="control">
                                                             <GooglePlacesAutocomplete 
                                                                 apiKey="AIzaSyDB3m9IgLnTqEBC-GxuHeuAHjSkyyJZwKw"
                                                                 textInputProps={{
@@ -248,10 +258,10 @@ class Create extends Component{
                                                                     }}
                                                                 minLengthAutocomplete={3}
                                                                 autocompletionRequest={{ componentRestrictions: { country:["UK"]}, types: ['geocode'],  }}/>
-                                                        </div>
                                                     </div>
-                                                    <div className="field pt-5" style={{flex: 1}}>
-                                                        <div className="control">
+                                                </div>
+                                                <div className="field pt-5" style={{flex: 1}}>
+                                                    <div className="control">
                                                             <Select 
                                                                 options={options}
                                                                 name='tags' 
@@ -288,8 +298,8 @@ class Create extends Component{
                                                                     backgroundColor: 'whitesmoke',
                                                                     fontWeight: 700
                                                                 })}}/>
-                                                        </div>
                                                     </div>
+                                                </div>
                                                 <button className='button is-next has-text-white' style={{alignSelf: 'flex-end'}} onClick={this.next}>Next Step</button>
                                             </div>
                                             )}
@@ -297,23 +307,52 @@ class Create extends Component{
                                                 <div className="details-form">
                                                     <div className="field pt-5">
                                                         <div className="control">
-                                                        <Calendar
-                                                            onChange={(e) => this.setDates(e)}
-                                                            onClickDay={(e) => this.setDates(e)}
-                                                            selectRange={true}
-                                                            value={dates}
-                                                            minDate={new Date()}
-                                                            maxDate={new Date('30-11-2022')}
-                                                            minDetail="month"
-                                                            maxDetail="month"
-                                                            defaultView="month"
-                                                            next2Label={null}/>
+                                                            <DropdownDate
+                                                                startDate={                      
+                                                                    moment(new Date).format('yyyy-MM-DD')                 
+                                                                  }
+                                                                  endDate={                         
+                                                                    '2030-12-31'                    
+                                                                  }
+                                                                selectedDate={                    
+                                                                    selectedDate         
+                                                                }
+                                                                onDateChange={(date) => {
+                                                                    console.log(date);
+                                                                    this.setState({ date: date, selectedDate: this.formatDate(date)});
+                                                                }}
+                                                                order={[                          
+                                                                    DropdownComponent.day,         
+                                                                    DropdownComponent.month,
+                                                                    DropdownComponent.year
+                                                                  ]}
+                                                                classes={                         
+                                                                    {
+                                                                      dateContainer: 'date-container',
+                                                                      yearContainer: 'select',
+                                                                      monthContainer: 'select',
+                                                                      dayContainer: 'select',
+                                                                    }
+                                                                }
+                                                                defaultValues={
+                                                                    {
+                                                                      day: "Day",
+                                                                      month: "Month",
+                                                                      year: "Year"
+                                                                    }
+                                                                }
+                                                                options={                        
+                                                                    {
+                                                                      monthShort: true
+                                                                    }
+                                                                }
+                                                            />
                                                         </div>
                                                     </div>
-                                                    <div className="field">
+                                                    <div className="field pt-5">
                                                         <div className="control">
                                                             <TimeRangePicker
-                                                                    format="hh:mm"
+                                                                    format="hh:mm a"
                                                                     clearIcon={null}
                                                                     clockIcon={null}
                                                                     disableClock={true}
@@ -365,9 +404,8 @@ class Create extends Component{
                                     )}
                                     {step === 2 && (
                                     <div className="right-panel">
-                                        <img src={imageURL} className="image-head"/>
+                                        <div className="image-head" style={{backgroundImage: `url(${imageURL})`}}/>
                                         <div className="info-container">
-
                                         </div>
                                     </div>
                                     )}
